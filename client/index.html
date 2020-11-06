@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Cards</title>
+</head>
+
+<body>
+    <h1>Pokemon card game</h1>
+
+    <button onclick="callCards()">Call Cards</button>
+
+    <h2>Cards at play:</h2>
+
+    <body>
+        <div id="myData">
+            <ul id="Cards">
+                
+            </ul>
+        </div>
+    </body>
+
+    <button onclick="hideCreate()">hide creation</button>
+
+    <div id="createDiv">
+        <h3>Card creation</h3>
+        <input type="text" id="name" placeholder="name">
+        <input type="text" id="type" placeholder="type">
+        <input type="text" id="image" placeholder="image address">
+        <input type="text" id="description" placeholder="description">
+
+        <!-- Button to send data -->
+        <button onclick="sendCard()">Send Card</button>
+
+        <!-- For printing result from server -->
+        <p class="result" style="color:green"></p>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="main.js"></script>
+
+</body>
+
+</html>

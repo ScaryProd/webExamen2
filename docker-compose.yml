@@ -1,0 +1,25 @@
+version: "3"
+services:
+  server:
+    build: ./server
+    ports:
+      - "5000:5000"
+    volumes:
+       - ./server/src:/server/src
+    depends_on:
+      - mongo
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+  mongo:
+    image: mongo:3.6.19-xenial
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    volumes:
+      - mongo-data:/data/db
+volumes:
+  mongo-data:
+    driver: local
