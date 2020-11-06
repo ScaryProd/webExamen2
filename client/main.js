@@ -51,7 +51,7 @@ function addCardToList(card) {
 }
 
 async function callCards() {
-    response = await axios.get('http://localhost:5000/5cards')
+    response = await axios.ge('http://localhost:5000/5cards')
         .then(function (response) {
             // handle success
             for (var i = 0; i < response.data.data.length; i++) {
@@ -69,4 +69,17 @@ async function callCards() {
         .then(function () {
             // always executed
         });
+}
+
+async function updateState(){
+    var newState = await axios.ge('http://localhost:5000/states')
+    axios.post('http://localhost:5000/stateUpdate', newState)
+    .then(function (response) {
+        console.log(response);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+    console.log(newState.data.data[0].state)
 }

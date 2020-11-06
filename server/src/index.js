@@ -41,6 +41,20 @@ app.get("/states", (req, res) => {
     })
 })
 
+
+app.get("/state", (req, res) => {
+    State.find({_id: req.params.id}, (err, states) => {
+        if (err) return err
+
+        if (states) {
+            res.json({ data: states })
+        }
+        else {
+            res.status(404).json({ data: null })
+        }
+    })
+})
+
 app.get("/5cards", (req, res) => {
     Card.find({}, (err, cards) => {
         if (err) return err
@@ -88,7 +102,26 @@ app.post("/create-state", (req, res) => {
         }))
 })
 
-
+app.put('/stateUpdate', (req, res, next) => {
+    const state = new State({
+      _id: req.params._id,
+      state: (req.params.state + 1),
+      cardNames: req.params.cardNames
+    });
+    Thing.updateOne({_id: req.params.id}, thing).then(
+      () => {
+        res.status(201).json({
+          message: 'Thing updated successfully!'
+        });
+      }
+    ).catch(
+      (error) => {
+        res.status(400).json({
+          error: error
+        });
+      }
+    );
+  });
 
 app.listen(PORT, () => {
     console.log("App running at port 5000")
